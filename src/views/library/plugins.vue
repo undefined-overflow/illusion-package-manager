@@ -13,9 +13,9 @@
 <script lang="ts">
 import { useI18n } from "vue-i18n";
 import { defineComponent, onMounted, ref } from "vue";
-import { ApiPlugin } from "@/api/plugins/types";
-import { useIconsHelper } from "@/helpers/icons";
 import { clientPluginAdd, clientPlugins } from "@/client/plugins";
+import { useIconsHelper } from "@/helpers/icons";
+import { ApiPlugin } from "@/api/plugins/types";
 import { apiPlugins } from "@/api/plugins";
 
 type PluginEx = { installed: boolean; version: string } & ApiPlugin;
@@ -32,10 +32,10 @@ export default defineComponent({
     },
 
     mark(guid: string, installed: boolean) {
-      const p = this.plugins.find((p) => p.guid == guid)!;
-      p.installed = installed;
+      const plugin = this.plugins.find((p) => p.guid == guid)!;
+      plugin.installed = installed;
 
-      for (const dep of p.dependencies) {
+      for (const dep of plugin.dependencies) {
         this.mark(dep, installed);
       }
     },
@@ -62,8 +62,26 @@ export default defineComponent({
 <style lang="scss" scoped>
 .plugin {
   background-color: var(--header-bg-color);
-  // border: 1px solid rgba(0, 0, 0, 0.4);
-  box-shadow: 0 0 1px rgba(0, 0, 0, 0.7);
+  box-shadow: 0 0 6px rgba(0, 0, 0, 0.7);
+
+  &:hover {
+    background-color: var(--font-color);
+    color: var(--bg-color);
+
+    .plugin-description {
+      color: var(--bg-color);
+    }
+
+    .install {
+      background-color: var(--bg-color);
+      color: var(--font-color);
+
+      &:hover {
+        background-color: var(--font-color);
+        color: var(--bg-color);
+      }
+    }
+  }
 
   &:not(:last-child) {
     margin-bottom: 24px;
@@ -72,7 +90,7 @@ export default defineComponent({
 
 .plugin-header {
   border-top: 1px solid rgba(0, 0, 0, 0.4);
-  background-color: rgba(0, 0, 0, 0.08);
+  background-color: rgba(0, 0, 0, 0.1);
   padding: 8px 16px;
 
   display: grid;
@@ -80,16 +98,17 @@ export default defineComponent({
   gap: 16px;
 }
 
+.name {
+  font-weight: 700;
+}
+
 .install {
   cursor: pointer;
   padding: 0 10px;
   transition: var(--anim-dur) var(--anim-timing-func);
-  color: rgb(0, 191, 255);
-
-  &:hover {
-    background-color: var(--font-color);
-    color: var(--bg-color);
-  }
+  background-color: var(--font-color);
+  color: var(--bg-color);
+  text-transform: uppercase;
 }
 
 .plugin-description {

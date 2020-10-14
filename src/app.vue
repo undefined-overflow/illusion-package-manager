@@ -1,5 +1,5 @@
 <template>
-  <menu-component class="menu" />
+  <menu-component />
   <router-view class="router" />
   <!-- <modal-component /> -->
   <!-- <notifier-component /> -->
@@ -48,5 +48,6 @@ export default defineComponent({
 <style lang="scss" scoped>
 .router {
   padding: 24px;
+  margin-left: 280px;
 }
 </style>

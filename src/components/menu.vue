@@ -50,15 +50,19 @@ export default defineComponent({
 <style lang="scss" scoped>
 .menu {
   background-color: var(--header-bg-color);
-  // border-right: 1px solid rgba(0, 0, 0, 0.4);
-  box-shadow: 1px 0 20px rgba(0, 0, 0, 0.08);
-  //  box-shadow: 0 0 4px rgba(0, 0, 0, 0.7);
+  box-shadow: 1px 0 6px rgba(0, 0, 0, 0.7);
+  overflow-y: auto;
+  position: fixed;
+  height: 100%;
+  left: 0;
+  top: 0;
+  width: 280px;
 }
 
 .menu-link {
   display: block;
   user-select: none;
-  padding: 6px 60px 6px 30px;
+  padding: 6px 0px 6px 30px;
   transition: var(--anim-dur) var(--anim-timing-func);
 
   &:focus {
@@ -78,12 +82,13 @@ export default defineComponent({
   gap: 10px;
 }
 
-.router-link-exact-active {
+.router-link-active {
   background-color: var(--font-color);
   color: var(--bg-color);
 }
 
 .block-name {
+  font-weight: 700;
   color: var(--font-detail-color);
   text-transform: uppercase;
   margin-top: 20px;
