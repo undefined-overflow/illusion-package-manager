@@ -1,5 +1,5 @@
 <template>
-  <menu-component />
+  <menu-component class="menu" />
   <router-view class="router" />
   <!-- <modal-component /> -->
   <!-- <notifier-component /> -->
@@ -11,11 +11,16 @@ import { LocaleMessageDictionary, useI18n } from "vue-i18n";
 
 import { provideNotifier } from "./modules/notifier";
 import { provideModal } from "./modules/modal";
+import { clientPluginsUpdateAll } from "./client/plugins";
 
 export default defineComponent({
   setup() {
     provideNotifier();
     provideModal();
+
+    onMounted(async () => {
+      await clientPluginsUpdateAll();
+    });
   },
   components: {
     MenuComponent: defineAsyncComponent(() => import("@/components/menu.vue")),
@@ -46,8 +51,14 @@ export default defineComponent({
 </style>
 
 <style lang="scss" scoped>
+$offset: 260px;
+
 .router {
   padding: 24px;
-  margin-left: 280px;
+  margin-left: $offset;
+}
+
+.menu {
+  width: $offset;
 }
 </style>

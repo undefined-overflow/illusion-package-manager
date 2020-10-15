@@ -1,6 +1,9 @@
 import { clientRequest } from '../core';
 import { ClientPlugin } from './types';
 
+export const clientPluginsUpdateAll = () =>
+  clientRequest('plugins', { method: 'POST', });
+
 export const clientPlugins = (guid: string): Promise<ClientPlugin[]> =>
   clientRequest(`plugins/${guid}`).then(response => response.json());
 

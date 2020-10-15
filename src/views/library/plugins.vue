@@ -63,6 +63,7 @@ export default defineComponent({
 .plugin {
   background-color: var(--header-bg-color);
   box-shadow: 0 0 6px rgba(0, 0, 0, 0.7);
+  transition: var(--anim-dur) var(--anim-timing-func);
 
   &:hover {
     background-color: var(--font-color);
@@ -99,6 +100,7 @@ export default defineComponent({
 }
 
 .name {
+  white-space: nowrap;
   font-weight: 700;
 }
 

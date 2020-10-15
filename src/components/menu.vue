@@ -56,7 +56,6 @@ export default defineComponent({
   height: 100%;
   left: 0;
   top: 0;
-  width: 280px;
 }
 
 .menu-link {
