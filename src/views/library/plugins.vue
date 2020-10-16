@@ -3,8 +3,9 @@
     <div class="plugin" v-for="plugin of plugins" :key="plugin.guid">
       <div class="plugin-description">{{ t(`plugins.${plugin.guid}.description`) }}</div>
       <header class="plugin-header">
-        <div class="install" @click="install(plugin)" v-if="!plugin.installed">install</div>
         <div class="name">{{ t(`plugins.${plugin.guid}.name`) }}</div>
+        <div class="version" v-if="plugin.installed">{{ plugin.version }}</div>
+        <div class="install" @click="install(plugin)" v-else>install</div>
       </header>
     </div>
   </section>
@@ -60,10 +61,18 @@ export default defineComponent({
 </script>
 
 <style lang="scss" scoped>
+.plugins {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(calc(100% / 3 - 24px), 1fr));
+  gap: 24px;
+}
+
 .plugin {
   background-color: var(--header-bg-color);
   box-shadow: 0 0 6px rgba(0, 0, 0, 0.7);
   transition: var(--anim-dur) var(--anim-timing-func);
+  display: flex;
+  flex-direction: column;
 
   &:hover {
     background-color: var(--font-color);
@@ -84,9 +93,13 @@ export default defineComponent({
     }
   }
 
-  &:not(:last-child) {
-    margin-bottom: 24px;
-  }
+  // &:not(:last-child) {
+  // margin-bottom: 24px;
+  // }
+}
+
+.plugin-description {
+  flex-grow: 2;
 }
 
 .plugin-header {
@@ -104,6 +117,10 @@ export default defineComponent({
   font-weight: 700;
 }
 
+.version {
+  justify-self: end;
+}
+
 .install {
   cursor: pointer;
   padding: 0 10px;
@@ -111,10 +128,31 @@ export default defineComponent({
   background-color: var(--font-color);
   color: var(--bg-color);
   text-transform: uppercase;
+  justify-self: end;
 }
 
 .plugin-description {
   padding: 16px;
   color: var(--font-detail-color);
+}
+</style>
+
+<style lang="scss" scoped>
+@media (max-width: 1900px) {
+  .plugins {
+    grid-template-columns: repeat(auto-fill, minmax(calc(100% / 3 - 24px), 1fr));
+  }
+}
+
+@media (max-width: 1600px) {
+  .plugins {
+    grid-template-columns: repeat(auto-fill, minmax(calc(100% / 2 - 24px), 1fr));
+  }
+}
+
+@media (max-width: 1000px) {
+  .plugins {
+    grid-template-columns: 1fr;
+  }
 }
 </style>
