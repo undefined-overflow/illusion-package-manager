@@ -1,4 +1,3 @@
-import { ApiGameExtensions } from '@/api/games/types';
 import { createRouter, createWebHashHistory, createWebHistory, RouteRecordRaw } from "vue-router";
 
 const routes: Array<RouteRecordRaw> = [{
@@ -34,6 +33,10 @@ const routes: Array<RouteRecordRaw> = [{
   path: "/tasks",
   name: "tasks",
   component: () => import("@/views/tasks.vue"),
+}, {
+  path: "/pages/install",
+  name: "pages-install",
+  component: () => import("@/views/pages/install.vue"),
 }];
 
 export const router = createRouter({

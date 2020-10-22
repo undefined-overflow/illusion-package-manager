@@ -5,7 +5,7 @@
       <header class="plugin-header">
         <div class="name">{{ t(`plugins.${plugin.guid}.name`) }}</div>
         <div class="version" v-if="plugin.installed">{{ plugin.version }}</div>
-        <div class="install" @click="install(plugin)" v-else>install</div>
+        <div class="button" @click="install(plugin)" v-else>install</div>
       </header>
     </div>
   </section>
@@ -61,6 +61,8 @@ export default defineComponent({
 </script>
 
 <style lang="scss" scoped>
+@use '@/styles/button.scss';
+
 .plugins {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(calc(100% / 3 - 24px), 1fr));
@@ -82,7 +84,7 @@ export default defineComponent({
       color: var(--bg-color);
     }
 
-    .install {
+    .button {
       background-color: var(--bg-color);
       color: var(--font-color);
 
@@ -92,10 +94,6 @@ export default defineComponent({
       }
     }
   }
-
-  // &:not(:last-child) {
-  // margin-bottom: 24px;
-  // }
 }
 
 .plugin-description {
@@ -121,13 +119,7 @@ export default defineComponent({
   justify-self: end;
 }
 
-.install {
-  cursor: pointer;
-  padding: 0 10px;
-  transition: var(--anim-dur) var(--anim-timing-func);
-  background-color: var(--font-color);
-  color: var(--bg-color);
-  text-transform: uppercase;
+.button {
   justify-self: end;
 }
 

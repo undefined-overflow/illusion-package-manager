@@ -21,15 +21,6 @@ export default {
       },
     },
   },
-  Notifier: {
-    installOrLaunchClient: {
-      text1: "Client not responding. Maybe it is not running. Click",
-      text2: "here to run",
-      text3: "or",
-      text4: "here to install.",
-      retryConnect: "Retry connect... ",
-    },
-  },
   settings: {
     games: {
       remove: "Remove game",
@@ -43,6 +34,23 @@ export default {
     [ApiGameExtensions.CARDS]: "Cards",
     [ApiGameExtensions.PLUGINS]: "Plugins",
     [ApiGameExtensions.FOLDERS]: "Folders",
+  },
+  popups: {
+    noClient: {
+      text1: "Client not responding. Maybe it is not running.",
+      text1_1: "Please click",
+      text2: "here to run",
+      text3: "or",
+      text4: "here to install.",
+    },
+  },
+  pages: {
+    install: {
+      download: 'Download client',
+      install: 'Install client',
+      close: 'Close this tab',
+      launch: 'Launch client'
+    },
   },
   games,
   plugins,

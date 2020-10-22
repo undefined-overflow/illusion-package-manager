@@ -1,8 +1,7 @@
 <template>
   <menu-component class="menu" />
   <router-view class="router" />
-  <!-- <modal-component /> -->
-  <!-- <notifier-component /> -->
+  <PopupsComponent />
 </template>
 
 <script lang="ts">
@@ -12,20 +11,21 @@ import { LocaleMessageDictionary, useI18n } from "vue-i18n";
 import { provideNotifier } from "./modules/notifier";
 import { provideModal } from "./modules/modal";
 import { clientPluginsUpdateAll } from "./client/plugins";
+import { providePopup } from "./modules/popup";
 
 export default defineComponent({
   setup() {
     provideNotifier();
     provideModal();
+    providePopup();
 
     onMounted(async () => {
-      await clientPluginsUpdateAll();
+      // await clientPluginsUpdateAll();
     });
   },
   components: {
     MenuComponent: defineAsyncComponent(() => import("@/components/menu.vue")),
-    ModalComponent: defineAsyncComponent(() => import("@/components/modal.vue")),
-    NotifierComponent: defineAsyncComponent(() => import("@/components/notifier.vue")),
+    PopupsComponent: defineAsyncComponent(() => import("@/components/popups.vue")),
   },
 });
 </script>
