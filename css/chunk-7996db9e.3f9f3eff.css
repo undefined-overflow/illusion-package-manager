@@ -1,1 +1,0 @@
-footer{-webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none;position:fixed;bottom:0;left:0;right:0}.fade-enter-active,.fade-leave-active{transition:var(--anim-dur) var(--anim-timing-func)}.fade-enter-from,.fade-leave-to{opacity:0;transform:translateY(50%)}
